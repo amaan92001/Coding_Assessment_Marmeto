@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Coding Assesment L2 boilerplate</title>
+		<link rel="stylesheet" href="styles.css" />
+		<style>
+			.cart-item input[type="number"] {
+				width: 50px;
+				padding: 5px;
+				text-align: center;
+			}
+
+			@media (max-width: 767px) {
+				.cart-item input[type="number"] {
+					width: 60px; 
+					min-width: 60px; 
+					padding: 5px;
+					text-align: center;
+				}
+			}
+
+
+			@media (min-width: 768px) and (max-width: 1024px) {
+				.cart-item input[type="number"] {
+					width: 55px; 
+					min-width: 55px;
+					padding: 5px;
+					text-align: center;
+				}
+			}
+
+
+			.loader {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border: 16px solid #f3f3f3;
+				border-radius: 50%;
+				border-top: 16px solid #3498db;
+				width: 120px;
+				height: 120px;
+				animation: spin 2s linear infinite;
+				z-index: 1000;
+			}
+
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<img src="./images/Meubel House_Logos-05.png" alt="" />
+				<h1>Marmeto</h1>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Shop</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</nav>
+			<div class="icons">
+				<a href="#"><img src="./images/akar-icons_search.png" alt="" /></a>
+				<a href="#"><img src="./images/Vector.png" alt="" /></a>
+				<a href="#"
+					><img src="./images/ant-design_shopping-cart-outlined.png" alt=""
+				/></a>
+			</div>
+		</header>
+
+		<div class="hero">
+			<img src="./images/Meubel House_Logos-05.png" alt="" />
+			<h1>Cart</h1>
+			<p>Home > <span style="font-weight: 300">Cart</span></p>
+		</div>
+
+		<div class="content">
+			<div class="cart-table">
+				<table>
+					<thead>
+						<tr>
+							<th>Product</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>Subtotal</th>
+						</tr>
+					</thead>
+					<tbody id="cart-items">
+						<tr class="cart-item">
+							<td>
+								<img src="item-image.jpg" alt="Item Title" />
+								Item Title
+							</td>
+							<td>₹100.00</td>
+							<td>
+								<input
+									type="number"
+									value="1"
+									min="1"
+									onchange="updateSubtotal(this, 100)"
+									
+								/>
+							</td>
+							<td class="subtotal">₹100.00</td>
+							<td>
+								<button onclick="confirmRemoveItem(this)">
+									🗑️
+									
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="cart-totals">
+				<h2>Cart Totals</h2>
+				<p><strong>Subtotal</strong> <span id="subtotal">Rs. 0.00</span></p>
+				<p><strong>Total</strong> <span id="total">Rs. 0.00</span></p>
+				<button id="checkout-button">Check Out</button>
+			</div>
+		</div>
+
+		<div class="features">
+			<div class="feature">
+				<img src="./images/trophy 1.png" alt="High Quality" />
+				<div>
+					<h3>High Quality</h3>
+					<p>crafted from top materials</p>
+				</div>
+			</div>
+			<div class="feature">
+				<img src="./images/Group.png" alt="Warranty Protection" />
+				<div>
+					<h3>Warranty Protection</h3>
+					<p>Over 2 years</p>
+				</div>
+			</div>
+			<div class="feature">
+				<img src="./images/shipping.png" alt="Free Shipping" />
+				<div>
+					<h3>Free Shipping</h3>
+
+					<p>Order over 150 $</p>
+				</div>
+			</div>
+			<div class="feature">
+				<img src="./images/customer-support.png" alt="24 / 7 Support" />
+				<div>
+					<h3>24 / 7 Support</h3>
+
+					<p>Dedicated support</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="remove-modal" class="modal" style="display: none">
+			<div class="modal-content">
+				<p>Are you sure you want to remove this item from the cart?</p>
+				<button id="confirm-remove">Yes</button>
+				<button id="cancel-remove">No</button>
+			</div>
+		</div>
+		<div id="checkout-modal" class="modal" style="display: none">
+			<div class="modal-content">
+				<p>Checkout successfully!</p>
+				<button id="close-checkout-modal">Close</button>
+			</div>
+		</div>
+
+		<div id="loader" class="loader" style="display: none"></div>
+
+		<script src="script.js"></script>
+	
+	</body>
+</html>
